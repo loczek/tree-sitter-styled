@@ -1,6 +1,7 @@
 {
   "name": "tree-sitter-styled",
   "version": "0.1.0",
+  "type": "module",
   "description": "styled-components grammar for tree-sitter",
   "repository": "https://github.com/mskelton/tree-sitter-styled.git",
   "main": "bindings/node",

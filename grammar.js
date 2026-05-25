@@ -1,6 +1,6 @@
-const CSS = require("tree-sitter-css/grammar")
+import CSS from "tree-sitter-css/grammar.js"
 
-module.exports = grammar(CSS, {
+export default grammar(CSS, {
   name: "styled",
   rules: {
     _top_level_item: ($, original) => choice(original, $.interpolation),
@@ -12,8 +12,8 @@ module.exports = grammar(CSS, {
         -1,
         choice(
           ...original.content.members,
-          alias($._inline_interpolation, $.interpolation)
-        )
+          alias($._inline_interpolation, $.interpolation),
+        ),
       ),
 
     interpolation: $ =>
