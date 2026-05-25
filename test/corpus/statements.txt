@@ -53,6 +53,10 @@ Keyframes statements
   to   { margin-top: 100px; }
 }
 
+@keyframes hello {
+  0%, 50% {}
+}
+
 ---
 
 (stylesheet
@@ -60,7 +64,9 @@ Keyframes statements
     (keyframe_block (from) (block (declaration (property_name) (integer_value (unit)))))
     (keyframe_block (integer_value (unit)) (block (declaration (property_name) (integer_value (unit)) (important))))
     (comment)
-    (keyframe_block (to) (block (declaration (property_name) (integer_value (unit))))))))
+    (keyframe_block (to) (block (declaration (property_name) (integer_value (unit)))))))
+  (keyframes_statement (keyframes_name) (keyframe_block_list
+    (keyframe_block (integer_value (unit)) (integer_value (unit)) (block)))))
 
 ==============================
 Media statements
@@ -146,6 +152,39 @@ Charset statements
 
 (stylesheet
   (charset_statement (string_value (string_content))))
+
+==============================
+Scope statements
+==============================
+
+@scope (.card) {
+  h1 {
+    color: blue;
+  }
+}
+
+@scope (.article-body) to (figure) {
+  img {
+    border: 5px solid black;
+  }
+}
+
+---
+
+(stylesheet
+  (scope_statement
+    (class_selector (class_name (identifier)))
+    (block
+      (rule_set (selectors (tag_name))
+        (block
+          (declaration (property_name) (plain_value))))))
+  (scope_statement
+    (class_selector (class_name (identifier)))
+    (tag_name)
+    (block
+      (rule_set (selectors (tag_name))
+        (block
+          (declaration (property_name) (integer_value (unit)) (plain_value) (plain_value)))))))
 
 ==============================
 Other at-statements
