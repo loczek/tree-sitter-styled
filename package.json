@@ -5,24 +5,50 @@
   "description": "styled-components grammar for tree-sitter",
   "repository": "https://github.com/mskelton/tree-sitter-styled.git",
   "main": "bindings/node",
+  "types": "bindings/node",
   "keywords": [
+    "incremental",
+    "parsing",
     "tree-sitter",
-    "parser",
-    "css",
-    "styled-components"
+    "styled"
   ],
-  "author": "Mark Skelton",
   "license": "ISC",
-  "scripts": {
-    "build": "tree-sitter generate",
-    "test": "tree-sitter test && tree-sitter parse examples/* --quiet --time"
-  },
+  "author": "Mark Skelton",
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**",
+    "*.wasm"
+  ],
   "dependencies": {
-    "nan": "^2.17.0"
+    "node-addon-api": "^8.5.0",
+    "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
     "prettier": "^3.1.0",
-    "tree-sitter-cli": "^0.20.8",
+    "prebuildify": "^6.0.1",
+    "tree-sitter": "^0.25.0",
+    "tree-sitter-cli": "^0.25.10",
     "tree-sitter-css": "git://github.com/tree-sitter/tree-sitter-css.git"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.25.0"
+  },
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "install": "node-gyp-build",
+    "prestart": "tree-sitter build --wasm",
+    "build": "tree-sitter generate",
+    "start": "tree-sitter playground",
+    "test": "tree-sitter test && tree-sitter parse examples/* --quiet --time",
+    "test:node": "node --test bindings/node/*_test.js"
   }
 }
