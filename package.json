@@ -24,17 +24,5 @@
     "prettier": "^3.1.0",
     "tree-sitter-cli": "^0.20.8",
     "tree-sitter-css": "git://github.com/tree-sitter/tree-sitter-css.git"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.css",
-      "file-types": [
-        "javascript",
-        "typescript"
-      ],
-      "highlights": [
-        "node_modules/tree-sitter-css/queries/highlights.scm"
-      ]
-    }
-  ]
+  }
 }
